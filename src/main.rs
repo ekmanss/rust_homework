@@ -2,6 +2,7 @@ use class_one::layer_one;
 
 pub mod class_one;
 pub mod util;
+pub mod class_three;
 
 fn main() {
     println!("layer_one::print_a2Z::run() ->");
