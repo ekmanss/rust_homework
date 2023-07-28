@@ -1,3 +1,5 @@
+use std::ops::Add;
+
 trait LevelOption {
     fn go_home(&self) -> String;
 }
@@ -54,5 +56,48 @@ pub fn traitObject() {
     //缺点: 无法在编译时保证所有的情况都被考虑到了，可能会出现bug.方法调用是完成的动态分发，这意味着编译器在运行时才知道调用哪个方法，性能相对enum更差。
     for item in vecEnum {
         println!("go home by: {}", item.go_home());
+    }
+}
+
+#[derive(Clone, Debug)]
+struct Date {
+    year: i32,
+    month: i32,
+    day: i32,
+}
+pub fn myTimeAdd() {
+    let date1 = Date {
+        year: 2020,
+        month: 10,
+        day: 1,
+    };
+    let date2 = Date {
+        year: 2020,
+        month: 10,
+        day: 2,
+    };
+    let date3 = Date {
+        year: 2020,
+        month: 10,
+        day: 3,
+    };
+
+    let rs = date1 + date2 + date3;
+    println!("rs: {:?}", rs);
+}
+
+trait TimeAddable {
+    fn add(self, other: Self) -> Self;
+}
+
+impl Add for Date {
+    type Output = Self;
+
+    fn add(self, other: Self) -> Self {
+        Self {
+            year: self.year + other.year,
+            month: self.month + other.month,
+            day: self.day + other.day,
+        }
     }
 }

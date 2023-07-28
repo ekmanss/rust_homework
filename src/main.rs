@@ -13,4 +13,5 @@ fn main() {
 
     class_four::homework::usingEnum();
     class_four::homework::traitObject();
+    class_four::homework::myTimeAdd();
 }
